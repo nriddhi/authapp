@@ -32,7 +32,12 @@ const bcrypt = require('bcrypt');
         req.cookies['auth_token'] = "";
       }
       
-      res.cookie('auth_token', accessToken);
+      res.cookie('auth_token', accessToken, {
+        path: "/",
+        httpOnly: true,
+        sameSite: "none",
+        secure:true
+      });
 
       return res
       .status(200)
@@ -71,7 +76,12 @@ const bcrypt = require('bcrypt');
      req.cookies['auth_token'] = "";
    }
    
-   res.cookie('auth_token', accessToken);
+   res.cookie('auth_token', accessToken, {
+     path: "/",
+     httpOnly: true,
+     sameSite: "none",
+     secure:true
+   });
 
     res.status(200).json({ message: "Logged In Successfully", code:'l200'});
 
@@ -119,7 +129,12 @@ const bcrypt = require('bcrypt');
         expiresIn: "3500s",
       } );
   
-      res.cookie('auth_token', token);
+      res.cookie('auth_token', token, {
+        path: "/",
+        httpOnly: true,
+        sameSite: "none",
+        secure:true
+      });
   
       req.uId = user.uId;
       next();
