@@ -125,7 +125,7 @@ const bcrypt = require('bcrypt');
       }
       res.clearCookie('auth_token');
       
-      const token = jwt.sign({ uId: user.uId }, process.env.JWT_SECRET, {
+      const accessToken = jwt.sign({ uId: user.uId }, process.env.JWT_SECRET, {
         expiresIn: "3500s",
       } );
   
