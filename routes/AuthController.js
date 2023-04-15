@@ -28,15 +28,15 @@ const bcrypt = require('bcrypt');
         expiresIn: "3500s",
       });
 
-      if (req.cookies['auth_token']) {
-        req.cookies['auth_token'] = "";
+      if (req.cookies['ecom_token']) {
+        req.cookies['ecom_token'] = "";
       }
       
-      res.cookie('auth_token', accessToken, {
+      res.cookie('ecom_token', accessToken, {
         path: "/",
         httpOnly: true,
-        sameSite: "none",
-        secure:true
+        sameSite: "lax",
+        secure:false
       });
 
       return res
@@ -72,15 +72,15 @@ const bcrypt = require('bcrypt');
     expiresIn: "3500s",
   });
 
-   if (req.cookies['auth_token']) {
-     req.cookies['auth_token'] = "";
+   if (req.cookies['ecom_token']) {
+     req.cookies['ecom_token'] = "";
    }
    
-   res.cookie('auth_token', accessToken, {
+   res.cookie('ecom_token', accessToken, {
      path: "/",
      httpOnly: true,
-     sameSite: "none",
-     secure:true
+     sameSite: "lax",
+     secure:false
    });
 
     res.status(200).json({ message: "Logged In Successfully", code:'l200'});
@@ -99,7 +99,7 @@ const bcrypt = require('bcrypt');
   };
 
   const verifyToken = (req, res, next) => {
-    const token = req.cookies.auth_token;
+    const token = req.cookies.ecom_token;
   
     if (!token) {
       return res.status(404).json({ code:'lo400', message: "No token found" });
@@ -114,26 +114,26 @@ const bcrypt = require('bcrypt');
   };
   
   const refreshToken = (req, res, next) => {
-    const cookieToken = req.cookies.auth_token; 
+    const cookieToken = req.cookies.ecom_token; 
     if (!cookieToken) {
       return res.status(400).json({ code:'lo400', message: "Couldn't find token" });
     }
     jwt.verify(String(cookieToken), process.env.JWT_SECRET, (err, user) => {
       if (err) {
-        res.clearCookie('auth_token');
+        res.clearCookie('ecom_token');
         return res.status(403).json({ code:'lou400', message: "Authentication failed" });
       }
-      res.clearCookie('auth_token');
+      res.clearCookie('ecom_token');
       
       const token = jwt.sign({ uId: user.uId }, process.env.JWT_SECRET, {
         expiresIn: "3500s",
       } );
   
-      res.cookie('auth_token', token, {
+      res.cookie('ecom_token', token, {
         path: "/",
         httpOnly: true,
-        sameSite: "none",
-        secure:true
+        sameSite: "lax",
+        //secure:false
       });
   
       req.uId = user.uId;
@@ -158,7 +158,7 @@ const bcrypt = require('bcrypt');
   };
 
   const logout = (req, res, next) => {
-    const token = req.cookies.auth_token;
+    const token = req.cookies.ecom_token;
     if (!token) {
       return res.status(400).json({ message: "Couldn't find token" });
     }
@@ -166,8 +166,8 @@ const bcrypt = require('bcrypt');
       if (err) {
         return res.status(403).json({ message: "Authentication failed" });
       }
-      res.clearCookie('auth_token');
-      req.cookies['auth_token'] = "";
+      res.clearCookie('ecom_token');
+      req.cookies['ecom_token'] = "";
       return res.status(200).json({code: 'logoutscs200', message: "Successfully Logged Out" });
   })};
   

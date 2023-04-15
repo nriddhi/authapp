@@ -17,7 +17,7 @@ const passport = require("passport");
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: 'http://localhost:5000/api/auth/google/callback',
+  callbackURL: 'https://authapp-nayeemriddhi.up.railway.app/api/auth/google/callback',
   passReqToCallback : true
 },
 function(request, accessToken, refreshToken, profile, cb) {
@@ -46,7 +46,7 @@ function(request, accessToken, refreshToken, profile, cb) {
 passport.use(new FacebookStrategy({
     clientID: process.env.FACEBOOK_APP_ID,
     clientSecret: process.env.FACEBOOK_APP_SECRET,
-    callbackURL: 'http://localhost:5000/api/auth/facebook/callback',
+    callbackURL: 'https://authapp-nayeemriddhi.up.railway.app/api/auth/facebook/callback',
     passReqToCallback : true
   },
   function(request, accessToken, refreshToken, profile, cb) {
@@ -72,7 +72,7 @@ passport.use(new FacebookStrategy({
 passport.use(new TwitterStrategy({
     consumerKey: process.env.TWITTER_CONSUMER_KEY,
     consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
-    callbackURL: 'http://localhost:5000/api/auth/twitter/callback',
+    callbackURL: 'https://authapp-nayeemriddhi.up.railway.app/api/auth/twitter/callback',
     passReqToCallback : true
   },
   function(request, accessToken, refreshToken, profile, cb) {
