@@ -20,7 +20,7 @@ const upload = multer({
    });
 
 const getAdminUser = async (req, res, next) => {
-    const cookieToken = req.cookies.ecom_token;
+    const cookieToken = req.cookies.auth_token;
   
     if (!cookieToken) {
         return res.status(404).json({ code:'lo400', message: "No token found" });

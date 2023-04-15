@@ -21,7 +21,7 @@
   },
   "name": "y",
   "version": "1.0.0",
-  "description": "Ecommerce Website",
+  "description": "Auth App",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js"
