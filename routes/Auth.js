@@ -185,15 +185,16 @@ router.post("/logout", logout);
      expiresIn: "3500s",
    });
 
-   if (req.cookies['ecom_token']) {
-     req.cookies['ecom_token'] = "";
+   if (req.cookies['auth_token']) {
+     req.cookies['auth_token'] = "";
    }
    
-   res.cookie('ecom_token', accessToken, {
-     path: "/",
-     httpOnly: true,
-     sameSite: "lax",
-   });
+   res.cookie('auth_token', accessToken, {
+    path: "/",
+    httpOnly: true,
+    sameSite: "none",
+    secure:true
+  });
     
     res.redirect(process.env.BASE_URL);
    
@@ -212,15 +213,16 @@ router.post("/logout", logout);
      expiresIn: "3500s",
    });
 
-   if (req.cookies['ecom_token']) {
-     req.cookies['ecom_token'] = "";
+   if (req.cookies['auth_token']) {
+     req.cookies['auth_token'] = "";
    }
    
-   res.cookie('ecom_token', accessToken, {
-     path: "/",
-     httpOnly: true,
-     sameSite: "lax",
-   });
+   res.cookie('auth_token', accessToken, {
+    path: "/",
+    httpOnly: true,
+    sameSite: "none",
+    secure:true
+  });
     
     res.redirect(process.env.BASE_URL);
    
@@ -239,15 +241,16 @@ router.post("/logout", logout);
      expiresIn: "3500s",
    });
 
-   if (req.cookies['ecom_token']) {
-     req.cookies['ecom_token'] = "";
+   if (req.cookies['auth_token']) {
+     req.cookies['auth_token'] = "";
    }
    
-   res.cookie('ecom_token', accessToken, {
-     path: "/",
-     httpOnly: true,
-     sameSite: "lax",
-   });
+   res.cookie('auth_token', accessToken, {
+    path: "/",
+    httpOnly: true,
+    sameSite: "none",
+    secure:true
+  });
     
     res.redirect(process.env.BASE_URL);
    
