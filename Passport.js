@@ -30,7 +30,7 @@ function(request, accessToken, refreshToken, profile, cb) {
           name: profile.displayName,
           social_id: profile.id,
           username : profile.displayName,
-          email : profile.emails[0]?.value,
+          email : profile.displayName,
           profilePic:profile.photos[0]?.value,
           verified:true,       
           });
